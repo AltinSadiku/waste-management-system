@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Create Areas Table -->
+    <changeSet id="1.0" author="system">
+        <createTable tableName="areas">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="municipality" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="neighborhood" type="VARCHAR(100)"/>
+            <column name="center_latitude" type="DECIMAL(10, 8)"/>
+            <column name="center_longitude" type="DECIMAL(11, 8)"/>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createIndex tableName="areas" indexName="idx_areas_municipality">
+            <column name="municipality"/>
+        </createIndex>
+        
+        <createIndex tableName="areas" indexName="idx_areas_is_active">
+            <column name="is_active"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Create Users Table -->
+    <changeSet id="1.0-2" author="system">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="VARCHAR(20)"/>
+            <column name="role" type="VARCHAR(20)" defaultValue="CITIZEN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <!-- Citizen specific fields -->
+            <column name="address" type="VARCHAR(200)"/>
+            <column name="latitude" type="DECIMAL(10, 8)"/>
+            <column name="longitude" type="DECIMAL(11, 8)"/>
+            <!-- Worker specific fields -->
+            <column name="assigned_area_id" type="BIGINT"/>
+        </createTable>
+        
+        <addForeignKeyConstraint 
+            baseTableName="users" 
+            baseColumnNames="assigned_area_id" 
+            constraintName="fk_users_assigned_area"
+            referencedTableName="areas" 
+            referencedColumnNames="id"
+            onDelete="SET NULL"/>
+            
+        <createIndex tableName="users" indexName="idx_users_username">
+            <column name="username"/>
+        </createIndex>
+        
+        <createIndex tableName="users" indexName="idx_users_email">
+            <column name="email"/>
+        </createIndex>
+        
+        <createIndex tableName="users" indexName="idx_users_role">
+            <column name="role"/>
+        </createIndex>
+        
+        <createIndex tableName="users" indexName="idx_users_assigned_area_id">
+            <column name="assigned_area_id"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Create Collection Schedules Table -->
+    <changeSet id="1.0-3" author="system">
+        <createTable tableName="collection_schedules">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="area_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="waste_type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day_of_week" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="collection_time" type="TIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN" defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <addForeignKeyConstraint 
+            baseTableName="collection_schedules" 
+            baseColumnNames="area_id" 
+            constraintName="fk_collection_schedules_area"
+            referencedTableName="areas" 
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+            
+        <createIndex tableName="collection_schedules" indexName="idx_collection_schedules_area_id">
+            <column name="area_id"/>
+        </createIndex>
+        
+        <createIndex tableName="collection_schedules" indexName="idx_collection_schedules_day">
+            <column name="day_of_week"/>
+        </createIndex>
+        
+        <createIndex tableName="collection_schedules" indexName="idx_collection_schedules_active">
+            <column name="is_active"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Create Reports Table -->
+    <changeSet id="1.0-4" author="system">
+        <createTable tableName="reports">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)" defaultValue="PENDING">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority" type="VARCHAR(10)" defaultValue="MEDIUM">
+                <constraints nullable="false"/>
+            </column>
+            <column name="latitude" type="DECIMAL(10, 8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="longitude" type="DECIMAL(11, 8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(200)"/>
+            <column name="reporter_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assigned_worker_id" type="BIGINT"/>
+            <column name="area_id" type="BIGINT"/>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="resolved_at" type="DATETIME"/>
+        </createTable>
+        
+        <addForeignKeyConstraint 
+            baseTableName="reports" 
+            baseColumnNames="reporter_id" 
+            constraintName="fk_reports_reporter"
+            referencedTableName="users" 
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+            
+        <addForeignKeyConstraint 
+            baseTableName="reports" 
+            baseColumnNames="assigned_worker_id" 
+            constraintName="fk_reports_assigned_worker"
+            referencedTableName="users" 
+            referencedColumnNames="id"
+            onDelete="SET NULL"/>
+            
+        <addForeignKeyConstraint 
+            baseTableName="reports" 
+            baseColumnNames="area_id" 
+            constraintName="fk_reports_area"
+            referencedTableName="areas" 
+            referencedColumnNames="id"
+            onDelete="SET NULL"/>
+            
+        <createIndex tableName="reports" indexName="idx_reports_status">
+            <column name="status"/>
+        </createIndex>
+        
+        <createIndex tableName="reports" indexName="idx_reports_reporter_id">
+            <column name="reporter_id"/>
+        </createIndex>
+        
+        <createIndex tableName="reports" indexName="idx_reports_assigned_worker_id">
+            <column name="assigned_worker_id"/>
+        </createIndex>
+        
+        <createIndex tableName="reports" indexName="idx_reports_area_id">
+            <column name="area_id"/>
+        </createIndex>
+        
+        <createIndex tableName="reports" indexName="idx_reports_created_at">
+            <column name="created_at"/>
+        </createIndex>
+        
+        <!-- Spatial index for location-based queries -->
+        <createIndex tableName="reports" indexName="idx_reports_location">
+            <column name="latitude"/>
+            <column name="longitude"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Create Report Images Table -->
+    <changeSet id="1.0-5" author="system">
+        <createTable tableName="report_images">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="file_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_path" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content_type" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="file_size" type="BIGINT"/>
+            <column name="report_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <addForeignKeyConstraint 
+            baseTableName="report_images" 
+            baseColumnNames="report_id" 
+            constraintName="fk_report_images_report"
+            referencedTableName="reports" 
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+            
+        <createIndex tableName="report_images" indexName="idx_report_images_report_id">
+            <column name="report_id"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Create Report Comments Table -->
+    <changeSet id="1.0-6" author="system">
+        <createTable tableName="report_comments">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="content" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="report_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <addForeignKeyConstraint 
+            baseTableName="report_comments" 
+            baseColumnNames="report_id" 
+            constraintName="fk_report_comments_report"
+            referencedTableName="reports" 
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+            
+        <addForeignKeyConstraint 
+            baseTableName="report_comments" 
+            baseColumnNames="author_id" 
+            constraintName="fk_report_comments_author"
+            referencedTableName="users" 
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+            
+        <createIndex tableName="report_comments" indexName="idx_report_comments_report_id">
+            <column name="report_id"/>
+        </createIndex>
+        
+        <createIndex tableName="report_comments" indexName="idx_report_comments_author_id">
+            <column name="author_id"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Create Notifications Table -->
+    <changeSet id="1.0-7" author="system">
+        <createTable tableName="notifications">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="report_id" type="BIGINT"/>
+            <column name="is_read" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="read_at" type="DATETIME"/>
+        </createTable>
+        
+        <addForeignKeyConstraint 
+            baseTableName="notifications" 
+            baseColumnNames="user_id" 
+            constraintName="fk_notifications_user"
+            referencedTableName="users" 
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+            
+        <addForeignKeyConstraint 
+            baseTableName="notifications" 
+            baseColumnNames="report_id" 
+            constraintName="fk_notifications_report"
+            referencedTableName="reports" 
+            referencedColumnNames="id"
+            onDelete="CASCADE"/>
+            
+        <createIndex tableName="notifications" indexName="idx_notifications_user_id">
+            <column name="user_id"/>
+        </createIndex>
+        
+        <createIndex tableName="notifications" indexName="idx_notifications_is_read">
+            <column name="is_read"/>
+        </createIndex>
+        
+        <createIndex tableName="notifications" indexName="idx_notifications_created_at">
+            <column name="created_at"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>
+
+
+
+
+
+

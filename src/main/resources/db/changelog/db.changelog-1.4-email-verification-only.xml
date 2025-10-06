@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="1.4.1" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="users" columnName="email_verified"/>
+            </not>
+        </preConditions>
+        <comment>Add email_verified column to users table</comment>
+        <addColumn tableName="users">
+            <column name="email_verified" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <rollback>
+            <dropColumn tableName="users" columnName="email_verified"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.4.2" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="users" columnName="verification_token"/>
+            </not>
+        </preConditions>
+        <comment>Add verification_token column to users table</comment>
+        <addColumn tableName="users">
+            <column name="verification_token" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <rollback>
+            <dropColumn tableName="users" columnName="verification_token"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.4.3" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="users" columnName="verification_token_expires_at"/>
+            </not>
+        </preConditions>
+        <comment>Add verification_token_expires_at column to users table</comment>
+        <addColumn tableName="users">
+            <column name="verification_token_expires_at" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <rollback>
+            <dropColumn tableName="users" columnName="verification_token_expires_at"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.4.4" author="system">
+        <comment>Update existing users to have email verified</comment>
+        <update tableName="users">
+            <column name="email_verified" valueBoolean="true"/>
+            <column name="is_active" valueBoolean="true"/>
+            <where>email_verified = false OR email_verified IS NULL</where>
+        </update>
+    </changeSet>
+
+    <changeSet id="1.4.5" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="email_verification_tokens"/>
+            </not>
+        </preConditions>
+        <comment>Create email_verification_tokens table</comment>
+        <createTable tableName="email_verification_tokens">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="token" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_email_verification_user" references="users(id)" deleteCascade="true"/>
+            </column>
+            <column name="expires_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="email_verification_tokens"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1.4.6" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="email_verification_tokens" indexName="idx_email_verification_token"/>
+            </not>
+        </preConditions>
+        <comment>Create indexes for email_verification_tokens table</comment>
+        <createIndex tableName="email_verification_tokens" indexName="idx_email_verification_token">
+            <column name="token"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="1.4.7" author="system">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="email_verification_tokens" indexName="idx_email_verification_user"/>
+            </not>
+        </preConditions>
+        <comment>Create user_id index for email_verification_tokens table</comment>
+        <createIndex tableName="email_verification_tokens" indexName="idx_email_verification_user">
+            <column name="user_id"/>
+        </createIndex>
+        <rollback>
+            <dropIndex tableName="email_verification_tokens" indexName="idx_email_verification_user"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

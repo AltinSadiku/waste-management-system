@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Insert Sample Areas for Kosovo -->
+    <changeSet id="1.1" author="system">
+        <insert tableName="areas">
+            <column name="name" value="Dardania"/>
+            <column name="description" value="Dardania neighborhood in Prishtina"/>
+            <column name="municipality" value="Prishtina"/>
+            <column name="neighborhood" value="Dardania"/>
+            <column name="center_latitude" value="42.6639"/>
+            <column name="center_longitude" value="21.1658"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="areas">
+            <column name="name" value="Ulpiana"/>
+            <column name="description" value="Ulpiana neighborhood in Prishtina"/>
+            <column name="municipality" value="Prishtina"/>
+            <column name="neighborhood" value="Ulpiana"/>
+            <column name="center_latitude" value="42.6581"/>
+            <column name="center_longitude" value="21.1619"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="areas">
+            <column name="name" value="City Center"/>
+            <column name="description" value="Prishtina city center"/>
+            <column name="municipality" value="Prishtina"/>
+            <column name="neighborhood" value="Center"/>
+            <column name="center_latitude" value="42.6629"/>
+            <column name="center_longitude" value="21.1655"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="areas">
+            <column name="name" value="Dragodan"/>
+            <column name="description" value="Dragodan neighborhood"/>
+            <column name="municipality" value="Prishtina"/>
+            <column name="neighborhood" value="Dragodan"/>
+            <column name="center_latitude" value="42.6594"/>
+            <column name="center_longitude" value="21.1583"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="areas">
+            <column name="name" value="Bardhosh"/>
+            <column name="description" value="Bardhosh neighborhood"/>
+            <column name="municipality" value="Gjakova"/>
+            <column name="neighborhood" value="Bardhosh"/>
+            <column name="center_latitude" value="42.3803"/>
+            <column name="center_longitude" value="20.4308"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="areas">
+            <column name="name" value="Center"/>
+            <column name="description" value="Gjakova city center"/>
+            <column name="municipality" value="Gjakova"/>
+            <column name="neighborhood" value="Center"/>
+            <column name="center_latitude" value="42.3803"/>
+            <column name="center_longitude" value="20.4308"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert Sample Collection Schedules -->
+    <changeSet id="1.1-2" author="system">
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="1"/>
+            <column name="waste_type" value="GENERAL_WASTE"/>
+            <column name="day_of_week" value="MONDAY"/>
+            <column name="collection_time" value="08:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="1"/>
+            <column name="waste_type" value="RECYCLABLE"/>
+            <column name="day_of_week" value="THURSDAY"/>
+            <column name="collection_time" value="08:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="2"/>
+            <column name="waste_type" value="GENERAL_WASTE"/>
+            <column name="day_of_week" value="TUESDAY"/>
+            <column name="collection_time" value="08:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="2"/>
+            <column name="waste_type" value="RECYCLABLE"/>
+            <column name="day_of_week" value="FRIDAY"/>
+            <column name="collection_time" value="08:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="3"/>
+            <column name="waste_type" value="GENERAL_WASTE"/>
+            <column name="day_of_week" value="WEDNESDAY"/>
+            <column name="collection_time" value="07:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="3"/>
+            <column name="waste_type" value="RECYCLABLE"/>
+            <column name="day_of_week" value="SATURDAY"/>
+            <column name="collection_time" value="07:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="4"/>
+            <column name="waste_type" value="GENERAL_WASTE"/>
+            <column name="day_of_week" value="THURSDAY"/>
+            <column name="collection_time" value="08:30:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="4"/>
+            <column name="waste_type" value="RECYCLABLE"/>
+            <column name="day_of_week" value="SUNDAY"/>
+            <column name="collection_time" value="08:30:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="5"/>
+            <column name="waste_type" value="GENERAL_WASTE"/>
+            <column name="day_of_week" value="MONDAY"/>
+            <column name="collection_time" value="09:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="5"/>
+            <column name="waste_type" value="RECYCLABLE"/>
+            <column name="day_of_week" value="THURSDAY"/>
+            <column name="collection_time" value="09:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="6"/>
+            <column name="waste_type" value="GENERAL_WASTE"/>
+            <column name="day_of_week" value="TUESDAY"/>
+            <column name="collection_time" value="09:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="collection_schedules">
+            <column name="area_id" valueNumeric="6"/>
+            <column name="waste_type" value="RECYCLABLE"/>
+            <column name="day_of_week" value="FRIDAY"/>
+            <column name="collection_time" value="09:00:00"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
+
+
+
+
+
+

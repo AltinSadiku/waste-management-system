@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Insert Sample Users -->
+    <changeSet id="1.2" author="system">
+        <!-- Admin User (password: admin123) -->
+        <insert tableName="users">
+            <column name="username" value="admin"/>
+            <column name="email" value="admin@wastekosovo.com"/>
+            <column name="password" value="$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HjzGp3U0pW0dP4D0YzW2"/>
+            <column name="first_name" value="System"/>
+            <column name="last_name" value="Administrator"/>
+            <column name="role" value="ADMIN"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <!-- Worker Users (password: worker123) -->
+        <insert tableName="users">
+            <column name="username" value="worker1"/>
+            <column name="email" value="worker1@wastekosovo.com"/>
+            <column name="password" value="$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HjzGp3U0pW0dP4D0YzW2"/>
+            <column name="first_name" value="Agim"/>
+            <column name="last_name" value="Krasniqi"/>
+            <column name="phone_number" value="+383 44 123 456"/>
+            <column name="role" value="WORKER"/>
+            <column name="assigned_area_id" valueNumeric="1"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="username" value="worker2"/>
+            <column name="email" value="worker2@wastekosovo.com"/>
+            <column name="password" value="$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HjzGp3U0pW0dP4D0YzW2"/>
+            <column name="first_name" value="Besnik"/>
+            <column name="last_name" value="Gashi"/>
+            <column name="phone_number" value="+383 44 234 567"/>
+            <column name="role" value="WORKER"/>
+            <column name="assigned_area_id" valueNumeric="2"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="username" value="worker3"/>
+            <column name="email" value="worker3@wastekosovo.com"/>
+            <column name="password" value="$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HjzGp3U0pW0dP4D0YzW2"/>
+            <column name="first_name" value="Driton"/>
+            <column name="last_name" value="Morina"/>
+            <column name="phone_number" value="+383 44 345 678"/>
+            <column name="role" value="WORKER"/>
+            <column name="assigned_area_id" valueNumeric="3"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <!-- Citizen Users (password: citizen123) -->
+        <insert tableName="users">
+            <column name="username" value="citizen1"/>
+            <column name="email" value="citizen1@example.com"/>
+            <column name="password" value="$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HjzGp3U0pW0dP4D0YzW2"/>
+            <column name="first_name" value="Arben"/>
+            <column name="last_name" value="Krasniqi"/>
+            <column name="phone_number" value="+383 44 456 789"/>
+            <column name="address" value="Rr. Dardania, Nr. 15"/>
+            <column name="latitude" value="42.6639"/>
+            <column name="longitude" value="21.1658"/>
+            <column name="role" value="CITIZEN"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="username" value="citizen2"/>
+            <column name="email" value="citizen2@example.com"/>
+            <column name="password" value="$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HjzGp3U0pW0dP4D0YzW2"/>
+            <column name="first_name" value="Blerim"/>
+            <column name="last_name" value="Gashi"/>
+            <column name="phone_number" value="+383 44 567 890"/>
+            <column name="address" value="Rr. Ulpiana, Nr. 23"/>
+            <column name="latitude" value="42.6581"/>
+            <column name="longitude" value="21.1619"/>
+            <column name="role" value="CITIZEN"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="users">
+            <column name="username" value="citizen3"/>
+            <column name="email" value="citizen3@example.com"/>
+            <column name="password" value="$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HjzGp3U0pW0dP4D0YzW2"/>
+            <column name="first_name" value="Driton"/>
+            <column name="last_name" value="Morina"/>
+            <column name="phone_number" value="+383 44 678 901"/>
+            <column name="address" value="Rr. Dragodan, Nr. 8"/>
+            <column name="latitude" value="42.6594"/>
+            <column name="longitude" value="21.1583"/>
+            <column name="role" value="CITIZEN"/>
+            <column name="is_active" valueBoolean="true"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert Sample Reports -->
+    <changeSet id="1.2-2" author="system">
+        <insert tableName="reports">
+            <column name="title" value="Overflowing bin near school"/>
+            <column name="description" value="The waste bin near the primary school is overflowing and creating a mess"/>
+            <column name="type" value="OVERFLOWING_BIN"/>
+            <column name="status" value="PENDING"/>
+            <column name="priority" value="HIGH"/>
+            <column name="latitude" value="42.6639"/>
+            <column name="longitude" value="21.1658"/>
+            <column name="address" value="Rr. Dardania, near primary school"/>
+            <column name="reporter_id" valueNumeric="5"/>
+            <column name="area_id" valueNumeric="1"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="reports">
+            <column name="title" value="Missing recycling bin"/>
+            <column name="description" value="The recycling bin on this street has been missing for 3 days"/>
+            <column name="type" value="MISSING_BIN"/>
+            <column name="status" value="IN_PROGRESS"/>
+            <column name="priority" value="MEDIUM"/>
+            <column name="latitude" value="42.6581"/>
+            <column name="longitude" value="21.1619"/>
+            <column name="address" value="Rr. Ulpiana, Nr. 25"/>
+            <column name="reporter_id" valueNumeric="6"/>
+            <column name="assigned_worker_id" valueNumeric="2"/>
+            <column name="area_id" valueNumeric="2"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="reports">
+            <column name="title" value="Illegal dumping site"/>
+            <column name="description" value="Someone has been dumping construction waste illegally in this area"/>
+            <column name="type" value="ILLEGAL_DUMP"/>
+            <column name="status" value="RESOLVED"/>
+            <column name="priority" value="URGENT"/>
+            <column name="latitude" value="42.6594"/>
+            <column name="longitude" value="21.1583"/>
+            <column name="address" value="Behind Dragodan park"/>
+            <column name="reporter_id" valueNumeric="7"/>
+            <column name="assigned_worker_id" valueNumeric="3"/>
+            <column name="area_id" valueNumeric="4"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="resolved_at" valueDate="2024-01-02T00:00:00"/>
+        </insert>
+        
+        <insert tableName="reports">
+            <column name="title" value="Damaged waste container"/>
+            <column name="description" value="The waste container is damaged and needs replacement"/>
+            <column name="type" value="DAMAGED_BIN"/>
+            <column name="status" value="PENDING"/>
+            <column name="priority" value="MEDIUM"/>
+            <column name="latitude" value="42.6629"/>
+            <column name="longitude" value="21.1655"/>
+            <column name="address" value="City center, near market"/>
+            <column name="reporter_id" valueNumeric="5"/>
+            <column name="area_id" valueNumeric="3"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="reports">
+            <column name="title" value="Missed collection"/>
+            <column name="description" value="Waste collection was missed this week in our neighborhood"/>
+            <column name="type" value="MISSED_COLLECTION"/>
+            <column name="status" value="PENDING"/>
+            <column name="priority" value="LOW"/>
+            <column name="latitude" value="42.6639"/>
+            <column name="longitude" value="21.1658"/>
+            <column name="address" value="Dardania neighborhood"/>
+            <column name="reporter_id" valueNumeric="6"/>
+            <column name="area_id" valueNumeric="1"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+            <column name="updated_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert Sample Comments -->
+    <changeSet id="1.2-3" author="system">
+        <insert tableName="report_comments">
+            <column name="content" value="I will investigate this issue tomorrow morning"/>
+            <column name="report_id" valueNumeric="2"/>
+            <column name="author_id" valueNumeric="2"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="report_comments">
+            <column name="content" value="Issue has been resolved, area cleaned up"/>
+            <column name="report_id" valueNumeric="3"/>
+            <column name="author_id" valueNumeric="3"/>
+            <column name="created_at" valueDate="2024-01-02T00:00:00"/>
+        </insert>
+        
+        <insert tableName="report_comments">
+            <column name="content" value="Thank you for reporting this issue"/>
+            <column name="report_id" valueNumeric="2"/>
+            <column name="author_id" valueNumeric="6"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+    </changeSet>
+
+    <!-- Insert Sample Notifications -->
+    <changeSet id="1.2-4" author="system">
+        <insert tableName="notifications">
+            <column name="title" value="New Report Assigned"/>
+            <column name="message" value="You have been assigned a new report: Missing recycling bin"/>
+            <column name="type" value="REPORT_ASSIGNED"/>
+            <column name="user_id" valueNumeric="2"/>
+            <column name="report_id" valueNumeric="2"/>
+            <column name="is_read" valueBoolean="false"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+        
+        <insert tableName="notifications">
+            <column name="title" value="Report Status Updated"/>
+            <column name="message" value="Your report 'Illegal dumping site' has been resolved"/>
+            <column name="type" value="REPORT_STATUS_CHANGED"/>
+            <column name="user_id" valueNumeric="7"/>
+            <column name="report_id" valueNumeric="3"/>
+            <column name="is_read" valueBoolean="false"/>
+            <column name="created_at" valueDate="2024-01-02T00:00:00"/>
+        </insert>
+        
+        <insert tableName="notifications">
+            <column name="title" value="Collection Reminder"/>
+            <column name="message" value="Waste collection is scheduled for tomorrow in your area"/>
+            <column name="type" value="COLLECTION_REMINDER"/>
+            <column name="user_id" valueNumeric="5"/>
+            <column name="is_read" valueBoolean="false"/>
+            <column name="created_at" valueDate="2024-01-01T00:00:00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
+

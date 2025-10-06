@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Waste Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2E8B57;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2E8B57;
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-bottom: 30px;
+        }
+        .success-badge {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .feature-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .feature-box h3 {
+            color: #2E8B57;
+            margin-top: 0;
+        }
+        .login-button {
+            display: inline-block;
+            background-color: #2E8B57;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🗑️ Waste Management System</div>
+            <div class="title">Welcome to Our Community!</div>
+        </div>
+        
+        <div class="content">
+            <p>Hello <strong th:text="${user.firstName} + ' ' + ${user.lastName}">User</strong>,</p>
+            
+            <div class="success-badge">
+                <strong>✅ Congratulations!</strong><br>
+                Your email has been successfully verified and your account is now active.
+            </div>
+            
+            <p>Welcome to the Waste Management System! We're excited to have you as part of our community dedicated to keeping our environment clean and sustainable.</p>
+            
+            <div style="text-align: center;">
+                <a th:href="${frontendUrl} + '/login'" class="login-button">Login to Your Account</a>
+            </div>
+            
+            <div class="feature-box">
+                <h3>🎯 What You Can Do Now:</h3>
+                <ul>
+                    <li><strong>Report Issues:</strong> Submit waste-related problems in your area</li>
+                    <li><strong>Track Reports:</strong> Monitor the status of your submitted reports</li>
+                    <li><strong>Get Notifications:</strong> Receive email alerts about collection schedules</li>
+                    <li><strong>View Schedule:</strong> Check when waste collection will happen in your area</li>
+                </ul>
+            </div>
+            
+            <div class="feature-box">
+                <h3>📱 Stay Connected:</h3>
+                <p>Make sure to keep your email address updated so you can receive important notifications about:</p>
+                <ul>
+                    <li>Waste collection reminders</li>
+                    <li>Report status updates</li>
+                    <li>Service announcements</li>
+                    <li>Emergency notifications</li>
+                </ul>
+            </div>
+            
+            <div class="feature-box">
+                <h3>🌱 Together We Make a Difference:</h3>
+                <p>Your participation in our waste management system helps create a cleaner, healthier environment for everyone. Every report you submit and every notification you receive contributes to better waste management in our community.</p>
+            </div>
+            
+            <p>If you have any questions or need assistance, don't hesitate to contact our support team.</p>
+            
+            <p>Thank you for joining us in making our community a better place!</p>
+            
+            <p>Best regards,<br>
+            The Waste Management Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>This email was sent from the Waste Management System.</p>
+            <p>For support, please contact our customer service team.</p>
+        </div>
+    </div>
+</body>
+</html>

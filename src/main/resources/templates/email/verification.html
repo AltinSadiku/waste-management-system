@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification - Waste Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2E8B57;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2E8B57;
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-bottom: 30px;
+        }
+        .verification-button {
+            display: inline-block;
+            background-color: #2E8B57;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+        .verification-button:hover {
+            background-color: #228B22;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .user-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🗑️ Waste Management System</div>
+            <div class="title">Email Verification Required</div>
+        </div>
+        
+        <div class="content">
+            <p>Hello <strong th:text="${user.firstName} + ' ' + ${user.lastName}">User</strong>,</p>
+            
+            <p>Thank you for registering with the Waste Management System! To complete your registration and activate your account, please verify your email address by clicking the button below:</p>
+            
+            <div style="text-align: center;">
+                <a th:href="${verificationUrl}" class="verification-button">Verify Email Address</a>
+            </div>
+            
+            <div class="user-info">
+                <h3>Registration Details:</h3>
+                <p><strong>Username:</strong> <span th:text="${user.username}">username</span></p>
+                <p><strong>Email:</strong> <span th:text="${user.email}">email@example.com</span></p>
+                <p><strong>Role:</strong> <span th:text="${user.role}">CITIZEN</span></p>
+                <p th:if="${user.address}"><strong>Address:</strong> <span th:text="${user.address}">Address</span></p>
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ Important:</strong> This verification link will expire in 24 hours. If you don't verify your email within this time, you'll need to request a new verification email.
+            </div>
+            
+            <p>If the button above doesn't work, you can copy and paste this link into your browser:</p>
+            <p style="word-break: break-all; background-color: #f8f9fa; padding: 10px; border-radius: 3px;">
+                <a th:href="${verificationUrl}" th:text="${verificationUrl}">Verification Link</a>
+            </p>
+            
+            <p>Once verified, you'll be able to:</p>
+            <ul>
+                <li>Log into your account</li>
+                <li>Submit waste management reports</li>
+                <li>Receive collection schedule notifications</li>
+                <li>Track your reports and their status</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>If you didn't create an account with us, please ignore this email.</p>
+            <p>This email was sent from the Waste Management System.</p>
+            <p>For support, please contact our customer service team.</p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection Reminder - Waste Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2E8B57;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2E8B57;
+            margin-bottom: 10px;
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .reminder-box {
+            background-color: #e7f3ff;
+            border: 2px solid #2E8B57;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .reminder-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2E8B57;
+            margin-bottom: 15px;
+        }
+        .schedule-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #495057;
+        }
+        .detail-value {
+            color: #2E8B57;
+            font-weight: 500;
+        }
+        .preparation-tips {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .preparation-tips h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+        .waste-type-badge {
+            display: inline-block;
+            background-color: #2E8B57;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .time-highlight {
+            font-size: 18px;
+            font-weight: bold;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🗑️ Waste Management System</div>
+            <div class="title">Collection Reminder</div>
+        </div>
+        
+        <div class="content">
+            <p>Hello <strong th:text="${user.firstName} + ' ' + ${user.lastName}">User</strong>,</p>
+            
+            <div class="reminder-box">
+                <div class="reminder-title">🗓️ Tomorrow's Collection</div>
+                <p>Don't forget to prepare your waste for collection!</p>
+            </div>
+            
+            <div class="schedule-details">
+                <h3 style="color: #2E8B57; margin-top: 0;">📋 Collection Details:</h3>
+                
+                <div class="detail-item">
+                    <span class="detail-label">Waste Type:</span>
+                    <span class="detail-value">
+                        <span class="waste-type-badge" th:text="${schedule.wasteType}">GENERAL WASTE</span>
+                    </span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="detail-label">Collection Day:</span>
+                    <span class="detail-value" th:text="${schedule.day}">MONDAY</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="detail-label">Collection Time:</span>
+                    <span class="detail-value time-highlight" th:text="${schedule.time}">08:00</span>
+                </div>
+                
+                <div class="detail-item">
+                    <span class="detail-label">Area:</span>
+                    <span class="detail-value" th:text="${schedule.area}">Downtown</span>
+                </div>
+            </div>
+            
+            <div class="preparation-tips">
+                <h3>💡 Preparation Tips:</h3>
+                <ul th:if="${schedule.wasteType == 'GENERAL WASTE'}">
+                    <li>Place your general waste bin at the curb by 7:30 AM</li>
+                    <li>Ensure the bin is easily accessible and not blocked</li>
+                    <li>Make sure the bin lid closes properly</li>
+                    <li>Do not overfill the bin</li>
+                </ul>
+                <ul th:if="${schedule.wasteType == 'RECYCLABLE'}">
+                    <li>Sort your recyclables properly (paper, plastic, glass)</li>
+                    <li>Rinse containers before placing them in the recycling bin</li>
+                    <li>Remove labels and caps when possible</li>
+                    <li>Place the recycling bin at the curb by 7:30 AM</li>
+                </ul>
+                <ul th:if="${schedule.wasteType == 'ORGANIC'}">
+                    <li>Use biodegradable bags for organic waste</li>
+                    <li>Place the organic waste bin at the curb by 7:30 AM</li>
+                    <li>Keep the bin in a shaded area if possible</li>
+                    <li>Ensure the bin is properly sealed</li>
+                </ul>
+                <ul th:if="${schedule.wasteType == 'BULKY ITEMS'}">
+                    <li>Place bulky items at the designated collection point</li>
+                    <li>Do not place items on private property</li>
+                    <li>Ensure items are easily accessible for collection</li>
+                    <li>Contact us if you have questions about acceptable items</li>
+                </ul>
+            </div>
+            
+            <p><strong>Important:</strong> Please ensure your waste is properly prepared and placed at the collection point by the scheduled time. Our collection team will not return for items placed out late.</p>
+            
+            <p>If you have any questions about the collection schedule or need to report an issue, please contact our customer service team.</p>
+            
+            <p>Thank you for your cooperation in keeping our community clean!</p>
+            
+            <p>Best regards,<br>
+            The Waste Management Team</p>
+        </div>
+        
+        <div class="footer">
+            <p>This is an automated reminder from the Waste Management System.</p>
+            <p>To update your notification preferences, please log into your account.</p>
+        </div>
+    </div>
+</body>
+</html>
+
