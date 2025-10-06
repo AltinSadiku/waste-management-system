@@ -1,0 +1,59 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/
+
+# Java / Maven / Spring Boot
+/target/
+.mvn/
+logs/
+*.log
+*.tmp
+hs_err_pid*
+/rebel.xml
+
+# Liquibase
+*.lock
+
+# Environment / Secrets
+.env
+.env.*
+*.local
+
+# Node / Frontend
+frontend/node_modules/
+frontend/.parcel-cache/
+frontend/.next/
+frontend/.nuxt/
+frontend/dist/
+frontend/build/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# Coverage / Testing
+coverage/
+.jest/
+
+# Uploads / Generated media
+uploads/
+
+# Misc
+*.swp
+*.swo
+*.orig
+
+# Cache
+.cache/
+**/.cache/
+
+# IntelliJ
+out/
+
+
+
+
+
