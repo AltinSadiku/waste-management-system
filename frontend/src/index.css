@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for theming */
+:root {
+  --toast-bg: #363636;
+  --toast-color: #fff;
+}
+
+.dark {
+  --toast-bg: #1f2937;
+  --toast-color: #f9fafb;
+}
+
+/* Global typography tweaks */
+@layer base {
+  html { 
+    @apply antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  h1,h2,h3,h4 { @apply tracking-tight; }
+  body {
+    @apply transition-colors duration-300;
+  }
+}
+
+/* Form control unification */
+@layer components {
+  .input {
+    @apply block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:placeholder-gray-400 transition-colors duration-300;
+  }
+  .select {
+    @apply block w-full pl-3 pr-10 py-2 text-base border-gray-300 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 transition-colors duration-300;
+  }
+  .textarea {
+    @apply block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600 dark:placeholder-gray-400 transition-colors duration-300;
+  }
+  .card {
+    @apply bg-white shadow-sm rounded-xl border border-gray-100 dark:bg-gray-800 dark:border-gray-700 transition-colors duration-300;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.leaflet-container {
+  height: 400px;
+  width: 100%;
+}
